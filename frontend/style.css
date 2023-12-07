@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Today Habits */
+.habit-square {
+  background: var(--background-color);
+  transition: transform 100ms;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid;
+  background-color: #fee2e2;
+  border-color: #ef4444;
+  gap: 8px;
+  box-shadow: 0 1px 0.5em #ef444475;
+}
+
+.habit-square.habit-done {
+  background-color: #dcfce7;
+  border-color: #22c55e;
+  box-shadow: 0 1px 0.5em #22c55e75;
+}
+
+.habit-square:hover {
+  transform: scale(1.05);
+  border-color: #ef4444;
+}
+
+.habit-square:active {
+  transform: scale(0.95);
+}
+
+.habit-square.habit-done:hover {
+  border-color: #22c55e;
+}
+
+.habits {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+}
+
+button {
+  border: black 1px solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 0.5rem;
+}

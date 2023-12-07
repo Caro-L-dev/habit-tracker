@@ -50,7 +50,7 @@ export async function habitsRoute(fastify) {
       });
     }
 
-    if (typeof body.done !== "number") {
+    if (typeof body.done !== "boolean") {
       reply.code(400).send({
         error: "Done value in the body must be a boolean",
       });

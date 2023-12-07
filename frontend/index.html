@@ -4,10 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Habit Tracker</title>
   </head>
   <body>
-    <h1 class="underline">Habit Tracker</h1>
+    <div class="flex flex-col justify-center">
+      <h1 class="text-center text-6xl font-extrabold my-10">
+        Habitudes du jour
+      </h1>
+      <div id="today-habits" class="habits flex justify-center">
+        <p>Loading...</p>
+      </div>
+      <div class="flex justify-center">
+        <button id="add-new-habit">Add new habit</button>
+        <button id="open-history">See history</button>
+      </div>
+    </div>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>
