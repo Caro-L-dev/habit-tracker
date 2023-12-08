@@ -12,13 +12,43 @@
       <h1 class="text-center text-6xl font-extrabold my-10">
         Habitudes du jour
       </h1>
-      <div id="today-habits" class="habits flex justify-center">
+      <div id="today-habits" class="habits flex flex-wrap justify-center">
         <p>Loading...</p>
       </div>
-      <div class="flex justify-center">
-        <button id="add-new-habit">Add new habit</button>
-        <button id="open-history">See history</button>
+      <div class="flex justify-center mt-4">
+        <button id="add-new-habit" class="neutral-button">
+          Ajoute une nouvelle tâche
+        </button>
+        <button id="open-history" class="neutral-button">
+          Consulter l'historique
+        </button>
       </div>
+      <dialog
+        class="dialog mt-[30rem] shadow-xl p-4 rounded-lg"
+        id="add-habit-dialog"
+      >
+        <div class="dialog-content">
+          <h2 class="text-center font-bold">Ajoute une nouvelle habitude</h2>
+
+          <div class="flex mx-1 justify-center items-center mt-5">
+            <form id="add-habit-form" class="flex">
+              <input
+                type="text"
+                name="title"
+                class="shadow-lg rounded-md p-2 mr-4"
+                placeholder="Tapez ici..."
+              />
+              <button type="Submit" class="neutral-button">✅</button>
+            </form>
+
+            <form method="dialog" class="flex">
+              <button type="submit" class="close-button neutral-button">
+                ❌
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
 
     <script type="module" src="/main.js"></script>

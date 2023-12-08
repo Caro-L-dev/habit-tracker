@@ -2,7 +2,19 @@ import { getTodayHabits, updateHabitDone } from "../api/habits-api.js";
 import { HabitSquare } from "./HabitsSquare.js";
 
 export class TodayHabits {
-  constructor() {}
+  static instance;
+  constructor() {
+    if (TodayHabits.instance) {
+      throw new Error("Use TodayHabits.getInstance() instead.");
+    }
+  }
+
+  static getInstance() {
+    if (!TodayHabits.instance) {
+      TodayHabits.instance = new TodayHabits();
+    }
+    return TodayHabits.instance;
+  }
 
   habitsSquare = [];
 
@@ -12,7 +24,15 @@ export class TodayHabits {
     this.render();
   }
 
+  toggle = (event) => {
+    const habitSquare = event.currentTarget;
+    this.toggleDone(habitSquare.id, habitSquare.done);
+  };
+
   async refresh() {
+    this.habitsSquare.forEach((habitSquare) => {
+      habitSquare.removeEventListener("toggle", this.toggle);
+    });
     try {
       this.todayHabits = await getTodayHabits();
       this.render();
@@ -21,7 +41,7 @@ export class TodayHabits {
     }
   }
 
-  async toggle(id, done) {
+  async toggleDone(id, done) {
     try {
       await updateHabitDone(id, !done);
       this.refresh();
@@ -36,9 +56,8 @@ export class TodayHabits {
     if (this.todayHabits) {
       this.habitsSquare = this.todayHabits.map((habit) => {
         const habitSquare = new HabitSquare(habit.id, habit.title, habit.done);
-        habitSquare.addEventListener("toggle", () => {
-          this.toggle(habitSquare.id, habitSquare.done);
-        });
+        habitSquare.addEventListener("toggle", this.toggle);
+
         this.element.appendChild(habitSquare.element);
         return habitSquare;
       });
